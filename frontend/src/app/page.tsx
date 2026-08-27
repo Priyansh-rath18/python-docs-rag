@@ -53,7 +53,7 @@ export default function Home() {
     setQuestion("");
 
     try {
-      const res = await fetch("python-docs-rag-production.up.railway.app/ask", {
+      const res = await fetch("https://python-docs-rag-production.up.railway.app/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q }),
