@@ -2,9 +2,11 @@ import os
 import json
 from sentence_transformers import SentenceTransformer
 import chromadb
+import pathlib
 
-PROCESSED_DIR = r"D:\cv_project\pythonicx\data\processed"
-CHROMA_DIR = r"D:\cv_project\pythonicx\chroma_db"
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent  # project root
+PROCESSED_DIR = BASE_DIR / "data" / "processed"
+CHROMA_DIR = BASE_DIR / "chroma_db"
 
 VERSIONS = ["3.11.15", "3.12", "3.13", "3.14"]
 
@@ -32,7 +34,7 @@ def build_embed_text(chunk):
     return "\n\n".join(p for p in parts if p)
 
 def process_version(version):
-    chunks_path = os.path.join(PROCESSED_DIR, f"python-{version}", "chunks.json")
+    chunks_path = PROCESSED_DIR / f"python-{version}" / "chunks.json"
     with open(chunks_path, "r", encoding="utf-8") as f:
         chunks = json.load(f)
 

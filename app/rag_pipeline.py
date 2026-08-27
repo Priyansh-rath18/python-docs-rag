@@ -4,15 +4,19 @@ import chromadb
 from google import genai
 
 from ingestion.version_utils import get_version_or_default
+import pathlib
 
-CHROMA_DIR = r"D:\cv_project\pythonicx\chroma_db"
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
+CHROMA_DIR = BASE_DIR / "chroma_db"
 EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
 LLM_MODEL = "gemini-3.6-flash"
 
 embed_model = SentenceTransformer(EMBED_MODEL_NAME)
-chroma_client = chromadb.PersistentClient(path=CHROMA_DIR)
+chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
 collection = chroma_client.get_or_create_collection(name="python_docs")
 
+from dotenv import load_dotenv
+load_dotenv()
 llm_client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 def retrieve_chunks(query: str, version: str, n_results: int = 5):
