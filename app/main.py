@@ -10,7 +10,7 @@ app = FastAPI(title="Python Docs RAG Chatbot")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # your Next.js dev server
+    allow_origins=["*"],  # your Next.js dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
