@@ -63,9 +63,9 @@ export default function CodeRunner() {
   };
 
   return (
-    <div style={FONT} className="rounded-md" >
+    <div style={{ ...FONT, border: "1px solid #262A36" }} className="rounded-2xl overflow-hidden">
       <div
-        className="flex items-center justify-between px-3 py-2 text-xs"
+        className="flex items-center justify-between px-4 py-2.5 text-xs"
         style={{ background: "#161923", borderBottom: "1px solid #262A36", color: "#7D8590" }}
       >
         <span>python3</span>
@@ -77,15 +77,15 @@ export default function CodeRunner() {
         onChange={(e) => setCode(e.target.value)}
         spellCheck={false}
         rows={5}
-        className="w-full text-sm p-3 outline-none resize-y"
+        className="w-full text-sm p-4 outline-none resize-y block"
         style={{ background: "#12141C", color: "#E8E8E8", border: "none" }}
       />
 
-      <div className="flex items-center justify-between px-3 py-2" style={{ borderTop: "1px solid #262A36" }}>
+      <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "#161923", borderTop: "1px solid #262A36" }}>
         <button
           onClick={runCode}
           disabled={status !== "ready"}
-          className="text-sm px-3 py-1.5 rounded disabled:opacity-40"
+          className="text-sm px-5 py-1.5 rounded-xl disabled:opacity-40 transition-all hover:brightness-110 shadow-[0_0_20px_rgba(75,139,190,0.25)]"
           style={{ background: "#4B8BBE", color: "#0F1117", fontWeight: 500 }}
         >
           {status === "running" ? "running..." : "▶ run"}
@@ -94,7 +94,7 @@ export default function CodeRunner() {
 
       {output && (
         <pre
-          className="text-sm p-3 whitespace-pre-wrap"
+          className="text-sm p-4 whitespace-pre-wrap"
           style={{
             background: "#12141C",
             color: isError ? "#F09595" : "#97C459",
